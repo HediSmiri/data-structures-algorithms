@@ -14,28 +14,28 @@
 // Declaation Types 
 
 typedef struct node {
-    int val ;
-    struct node *suiv ;
+    int data ;
+    struct node *next ;
 }node ;
 
 // Prototypes declarartions
 
-node Creation(node **List);
-node Creation_inconnue(node **List);
-node insert_debut (node **List);
-node insert_fin (node **List);
-void afficher (node *List);
-node * insert_middle (node ** List,int n);
-node * delete_debut (node **List);
-node* delete_fin (node ** List);
-node * delete_middle(node **List);
-node * delete (node **List);
-node * reserve (node ** List);
+void create(node **List);
+void create_unk(node **List);
+void Insert_First (node **List);
+void Insert_end (node **List);
+void Display (node *List);
+void insert_middle (node ** List,int n);
+void Delete_first (node **List);
+void Delete_end (node ** List);
+void delete_middle(node **List);
+void delete (node **List);
+void reverse (node ** List);
 int search (node * List,int data);
-node * concatination(node *List1 ,node *List2, node**List3);
-void Tri_bulle(node** head);
+void concatenate(node *List1 ,node *List2, node**List3);
+void sort_bulle(node** head);
 int count(node *list);
-int change(node **list,int pos1 , int pos2 );
+int swap(node **list,int pos1 , int pos2 );
 
 int main(){
 
@@ -57,11 +57,11 @@ int x1 ,x2 ;
                 printf("\n####################{-Singly Linked List-}####################\n\n");
                 printf("[1] - Create List\n");
                 printf("[2] - Insert In List\n");
-                printf("[3] - Delete From List\n");
+                printf("[3]   Delete From List\n");
                 printf("[4] - Search In List\n");
-                printf("[5] - reserve List\n");
+                printf("[5] - reverse List\n");
                 printf("[6] - Trie List\n");
-                printf("[7] - Change Pos in  List\n");
+                printf("[7] - swap Pos in  List\n");
                 printf("[8] - Display List\n");
                 printf("[0] - Exit\n");
                 printf("[#] - Your Answer : ");
@@ -77,11 +77,11 @@ int x1 ,x2 ;
                         printf("[#] - Your Answer : ");
                         scanf("%d",&rep);
                         if (rep == 1){
-                            Creation(&List);
+                            create(&List);
                             goto singly ;
                         }    
                         else if (rep == 2){
-                            Creation_inconnue(&List);
+                            create_unk(&List);
                             goto singly ;
                         }                   
                         else if (rep == 3) 
@@ -96,28 +96,28 @@ int x1 ,x2 ;
                         printf("[+] - Pos : ");
                         scanf("%d",&rep);
                         if (rep == 1)
-                            insert_debut(&List);
+                            Insert_First(&List);
                         else if (rep == count(List)+1)
-                            insert_fin(&List);
+                            Insert_end(&List);
                         else if (rep>count(List)+1){
                             printf("\n[-] - Error Position ! \n\n");
                             goto pos;
                         }else
-                            insert_middle(&List,rep);
+                    insert_middle(&List,rep);
                         printf("\n[+] - successfully Inserted\n");
                         goto singly;
                         break;
                 case 3 :
                 del :
-                    printf("\n[!] - {0} Delete ALL ");
+                    printf("\n[!] - {0 Delete ALL ");
                     printf("\n[+] - Pos of Delete Element : ");
                         scanf("%d",&rep);
                         if (rep == 0) 
                             delete(&List);
                         if (rep == 1){
-                            delete_debut(&List);
+                             Delete_first(&List);
                         }else if (rep == count(List)+1)
-                            delete_fin(&List);
+                             Delete_end(&List);
                         else if (rep>count(List)+1){
                             printf("\n[-] - Error Position ! \n\n");
                             goto del;
@@ -144,21 +144,22 @@ int x1 ,x2 ;
                                 goto search;
                     break;
                 case 5 :
-                    reserve(&List);
-                    afficher(List);
+                    reverse(&List);
+                    Display(List);
                     goto singly;
                     break;
                 case 6 :
                     printf("\nListe Before :");
-                    afficher(List);
-                    Tri_bulle(&List);
+                    Display(List);
+                    sort_bulle
+                (&List);
                     printf("Liste Now : ");
-                    afficher(List);
+                    Display(List);
                     goto singly;
                     break;
                 case 7 :
-                change1 :
-                        afficher(List);
+                swap1 :
+                        Display(List);
                         printf("[#] - Pos 1 : ");
                         scanf("%d",&rep);
                         x1 = search(List,rep);
@@ -167,20 +168,20 @@ int x1 ,x2 ;
                         x2 = search(List,rep1);
                         if ((x1 != 0)&&(x2 != 0 )){
                             if (rep == rep1){
-                                printf("[-] Can not change the same Position ");
+                                printf("[-] Can not swap the same Position ");
                             }else{
-                                change(&List,rep,rep1);
+                                swap(&List,rep,rep1);
                                 printf("[+] - Successfuly ! ^_^");
-                                afficher(List);
+                                Display(List);
                                 goto singly;
                             }
                         }else{
                             printf ("[-] - Position Error ");
-                            goto change1;
+                            goto swap1;
                         }
                     break;
                 case 8 :
-                    afficher(List);
+                    Display(List);
                     goto singly ;
                     break;
                 case 0:
@@ -188,30 +189,30 @@ int x1 ,x2 ;
                     break;
                 
                 default:
-                    printf("[-] Error Your Input Invalid -_- \n");
+                    printf("[-] Error Your Input Indataid -_- \n");
                     break;
                 }
 return 0 ;
 }
 
-node Creation(node **List){
+void create(node **List){
     node * Tete, *p;
-    int vall,n ;
+    int datal,n ;
     printf("\n[#] - Number Of Nodes : ");
     scanf("%d",&n);
     Tete = (node*)malloc(sizeof(node));
     printf("[#] - Node[1] : ");
-    scanf("%d",&vall);
-    Tete->val = vall;
-    Tete->suiv = NULL;
+    scanf("%d",&datal);
+    Tete->data = datal;
+    Tete->next = NULL;
     *List = Tete;
     for (int i = 1 ; i<n;i++){
         p = malloc(sizeof(node*));
         printf("[#] - Node[%d] : ",i+1);
-        scanf("%d",&vall);
-        p->val = vall;
-        p->suiv = NULL;
-        (*List)->suiv = p ;
+        scanf("%d",&datal);
+        p->data = datal;
+        p->next = NULL;
+        (*List)->next = p ;
         *List = p ;
     }
     *List = Tete;
@@ -219,19 +220,19 @@ node Creation(node **List){
 
 }
 
-node Creation_inconnue(node **List){
+void create_unk(node **List){
     node * Tete, *p;
-    int vall,n ;
+    int datal,n ;
     Tete = NULL ;
-    vall = 1;
+    datal = 1;
     int i = 1;
     printf("\n[!] - Just insert 0 to Exit\n");
-    while (vall != 0){
+    while (datal != 0){
         p = malloc(sizeof(node*));
         printf("[#] - Node[%d] : ",i);
-        scanf("%d",&vall);
-        p->val = vall;
-        p->suiv = Tete;
+        scanf("%d",&datal);
+        p->data = datal;
+        p->next = Tete;
         Tete = p ;
         i++;
     }
@@ -239,116 +240,115 @@ node Creation_inconnue(node **List){
     printf("\n[+] - successfully created\n");
 }
 
-node insert_debut (node **List){
+void Insert_First (node **List){
     node * Tete ;
     node * p = *List;
-    int vall ;
+    int datal ;
     Tete = (node*)malloc(sizeof(node*));
-    printf ("[#] - Input Value :  ");
-    scanf("%d",&vall);
-    Tete->val = vall ;
-    Tete ->suiv =p ;
+    printf ("[#] - Input dataue :  ");
+    scanf("%d",&datal);
+    Tete->data = datal ;
+    Tete ->next =p ;
     p = Tete;
     *List = p ;
 }
 
-node insert_fin (node **List){
+void Insert_end (node **List){
     node * Tete ;
     node * p = *List;
-    int vall ;
+    int datal ;
     Tete = (node*)malloc(sizeof(node*));
-    printf ("[#] - Input Value : ");
-    scanf("%d",&vall);
-    Tete->val = vall ;
-    Tete ->suiv =NULL ;
-    while (p->suiv != NULL){
-        p = p->suiv;
+    printf ("[#] - Input dataue : ");
+    scanf("%d",&datal);
+    Tete->data = datal ;
+    Tete ->next =NULL ;
+    while (p->next != NULL){
+        p = p->next;
     }
-    p->suiv= Tete;
+    p->next= Tete;
 }
 
-void afficher (node *List){
+void Display (node *List){
     node* p = List;
     printf("\n########################################\n");
     printf("[<>] - List [ ");
     while (p!=NULL){
-        printf("%d | ",p->val);
-        p = p->suiv;
+        printf("%d | ",p->data);
+        p = p->next;
     }
     printf("]\n########################################\n");
 }
-
-node * insert_middle (node ** List,int n){
+void insert_middle (node ** List,int n){
     node * temp = *List ;
     node * newnode = (node*)malloc(sizeof(node));
-    printf("[#] - Input Value :");
-    scanf("%d",&newnode->val);
+    printf("[#] - Input dataue :");
+    scanf("%d",&newnode->data);
     for (int i = 1; i < n-1; i++)
     {
-       temp = temp->suiv;
+       temp = temp->next;
        if (temp==NULL){
            printf ("[-] - Error allocate ");
            break;
        }
     }
     if (temp !=NULL){
-        newnode->suiv = temp->suiv;
-        temp->suiv  = newnode ;
+        newnode->next = temp->next;
+        temp->next  = newnode ;
     }
 }
 
-node * delete_debut (node **List){
+void Delete_first (node **List){
     if (List != NULL){
         node * head = *List ;
-        *List = (*List)->suiv ;
+        *List = (*List)->next ;
         free(head);
-        printf ("[-] - Successfully Delete \n");
+        printf ("[-] - Successfulle Delete \n");
     }
 }
 
-node* delete_fin (node ** List){
+void Delete_end (node ** List){
     if (*List != NULL){
         node * head = *List ;
-        while (head->suiv->suiv != NULL){
-            head = head->suiv;
+        while (head->next->next != NULL){
+            head = head->next;
         }
-        free(head->suiv->suiv);
-        head->suiv = NULL ;
+        free(head->next->next);
+        head->next = NULL ;
     }
 }
 
-node * delete_middle(node **List){
+void delete_middle(node **List){
     if (*List != NULL){
         node * head = *List;
         for (int i = 1 ; i<2-1;i++){
-            head = head->suiv;
+            head = head->next;
         }
         if (head != NULL){
-            node * supp = head->suiv;
-            head->suiv = head->suiv->suiv;
+            node * supp = head->next;
+            head->next = head->next->next;
             free(supp);
         }
     }
 }
 
-node * delete (node **List){
+void delete (node **List){
     node * head = *List ;
     while (*List != NULL){
-       *List = (*List)->suiv;
+       *List = (*List)->next;
        free(head);
    }
 
 }
 
-node * reserve (node ** List){
+void reverse (node ** List){
     if (*List !=NULL){
         node * prev = *List ;
-        *List = (*List)->suiv;
+        *List = (*List)->next;
         node * cur = *List ;
-        prev->suiv = NULL ;
+        prev->next = NULL ;
         while (*List != NULL){
-            *List = (*List)->suiv;
-             cur->suiv = prev;
+            *List = (*List)->next;
+             cur->next = prev;
              prev = cur ;
              cur = *List;        
         }
@@ -359,15 +359,15 @@ node * reserve (node ** List){
 
 int  search (node * List, int data){
     node * p = List ;
-    while ((p != NULL) && (p->val != data))
-        p = p->suiv;
+    while ((p != NULL) && (p->data != data))
+        p = p->next;
     if (p == NULL)
         return 0 ;
     else 
         return 1 ;
 }
 
-node * concatination(node *List1 ,node *List2, node**List3){
+void concatenate(node *List1 ,node *List2, node**List3){
     node *p = malloc(sizeof(node *));
     if ((List1 == NULL) && (List2 == NULL)){
         p = NULL ;
@@ -377,30 +377,30 @@ node * concatination(node *List1 ,node *List2, node**List3){
         p = List2 ;
     }else{
         p = List1 ;
-        while (p->suiv != NULL){
-            p = p->suiv;
+        while (p->next != NULL){
+            p = p->next;
         }
-        p->suiv = List2;
+        p->next = List2;
         p =List1 ;
         *List3 = p ; 
     }
 }
 
-void Tri_bulle(node** List) {           
+void sort_bulle(node** List) {           
     bool rep ;
     do {
         rep = false;
         node *p = *List;
-        node*q = p->suiv;
+        node*q = p->next;
         while (q!=NULL){
-            if (p->val > q->val){
-                int temp = p->val;
-                p->val = q->val ;
-                q->val = temp ;
+            if (p->data > q->data){
+                int temp = p->data;
+                p->data = q->data ;
+                q->data = temp ;
                 rep = true;
             }
             p = q ;
-            q = q->suiv;
+            q = q->next;
         }
     }while (rep ==true);
 }
@@ -412,13 +412,13 @@ int count(node *list)
     while (list != NULL) 
     {
         nodes++;
-        list = list->suiv;
+        list = list->next;
     }
 
     return nodes;
 }
 
-int change(node **list,int pos1 , int pos2 )
+int swap(node **list,int pos1 , int pos2 )
 {
     struct node *node1, *node2, *prev1, *prev2, *temp;
     int i;
@@ -448,22 +448,22 @@ int change(node **list,int pos1 , int pos2 )
         if (i == pos2)
             node2 = temp;
 
-        temp = temp->suiv;
+        temp = temp->next;
         i++;
     }
         // Link previous of node1 with node2
         if (prev1 != NULL)
-            prev1->suiv = node2;
+            prev1->next = node2;
 
         // Link previous of node2 with node1
         if (prev2 != NULL)
-            prev2->suiv = node1;
+            prev2->next = node1;
 
         // Swap node1 and node2 by swapping their 
         // next node links
-        temp        = node1->suiv;
-        node1->suiv = node2->suiv;
-        node2->suiv = temp;
+        temp        = node1->next;
+        node1->next = node2->next;
+        node2->next = temp;
 
         // Make sure to swap head node when swapping
         // first element.
