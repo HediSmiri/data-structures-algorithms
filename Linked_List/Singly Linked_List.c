@@ -197,20 +197,34 @@ return 0 ;
 
 void create(node **List){
     node * Tete, *p;
+<<<<<<< HEAD
+    int data,n ;
+=======
     int datal,n ;
+>>>>>>> 012593d04c9763852dc75af33dc843674da3011c
     printf("\n[#] - Number Of Nodes : ");
     scanf("%d",&n);
     Tete = (node*)malloc(sizeof(node));
     printf("[#] - Node[1] : ");
+<<<<<<< HEAD
+    scanf("%d",&data);
+    Tete->data = data;
+=======
     scanf("%d",&datal);
     Tete->data = datal;
+>>>>>>> 012593d04c9763852dc75af33dc843674da3011c
     Tete->next = NULL;
     *List = Tete;
     for (int i = 1 ; i<n;i++){
         p = malloc(sizeof(node*));
         printf("[#] - Node[%d] : ",i+1);
+<<<<<<< HEAD
+        scanf("%d",&data);
+        p->data = data;
+=======
         scanf("%d",&datal);
         p->data = datal;
+>>>>>>> 012593d04c9763852dc75af33dc843674da3011c
         p->next = NULL;
         (*List)->next = p ;
         *List = p ;
@@ -222,6 +236,18 @@ void create(node **List){
 
 void create_unk(node **List){
     node * Tete, *p;
+<<<<<<< HEAD
+    int data,n ;
+    Tete = NULL ;
+    data = 1;
+    int i = 1;
+    printf("\n[!] - Just insert 0 to Exit\n");
+    while (data != 0){
+        p = malloc(sizeof(node*));
+        printf("[#] - Node[%d] : ",i);
+        scanf("%d",&data);
+        p->data = data;
+=======
     int datal,n ;
     Tete = NULL ;
     datal = 1;
@@ -232,6 +258,7 @@ void create_unk(node **List){
         printf("[#] - Node[%d] : ",i);
         scanf("%d",&datal);
         p->data = datal;
+>>>>>>> 012593d04c9763852dc75af33dc843674da3011c
         p->next = Tete;
         Tete = p ;
         i++;
@@ -243,11 +270,19 @@ void create_unk(node **List){
 void Insert_First (node **List){
     node * Tete ;
     node * p = *List;
+<<<<<<< HEAD
+    int data ;
+    Tete = (node*)malloc(sizeof(node*));
+    printf ("[#] - Input dataue :  ");
+    scanf("%d",&data);
+    Tete->data = data ;
+=======
     int datal ;
     Tete = (node*)malloc(sizeof(node*));
     printf ("[#] - Input dataue :  ");
     scanf("%d",&datal);
     Tete->data = datal ;
+>>>>>>> 012593d04c9763852dc75af33dc843674da3011c
     Tete ->next =p ;
     p = Tete;
     *List = p ;
@@ -256,11 +291,19 @@ void Insert_First (node **List){
 void Insert_end (node **List){
     node * Tete ;
     node * p = *List;
+<<<<<<< HEAD
+    int data ;
+    Tete = (node*)malloc(sizeof(node*));
+    printf ("[#] - Input dataue : ");
+    scanf("%d",&data);
+    Tete->data = data ;
+=======
     int datal ;
     Tete = (node*)malloc(sizeof(node*));
     printf ("[#] - Input dataue : ");
     scanf("%d",&datal);
     Tete->data = datal ;
+>>>>>>> 012593d04c9763852dc75af33dc843674da3011c
     Tete ->next =NULL ;
     while (p->next != NULL){
         p = p->next;
