@@ -1,3 +1,12 @@
+/*
+		@ Code Created by Hedi Smiri 
+		Dont remove Copyright @ 2020
+		Just Test Skiils in Linked List
+		
+*/
+
+// Library
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,8 +15,12 @@ typedef struct node {
 	struct node * next ;
 }node ;
 
+// Capacity max of Queue
 
 #define capacity 1000
+
+// Size of Queue
+
 unsigned int size = 0 ;
 
 void Enqueue(node **rear,node ** front,int data);
@@ -60,9 +73,13 @@ menu :
 return 0 ;
 }
 
-
 void Enqueue(node **rear,node ** front , int data)
 {
+	if (size>capacity)
+		{
+			printf("[-] - Queue over Flow");
+			return ;
+		}
 	node *p = (node*)malloc(sizeof(node));
 	p->data = data ;
 	p->next = NULL ;
