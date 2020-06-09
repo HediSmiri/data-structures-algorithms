@@ -9,8 +9,9 @@
     <li>Singly Linked List</li>
     <li>Doubly Linked List</li>
     <li>Circulaire Linked_List</li>
-    
   </ul>
+ <li>Stack</li>
+ <li>Queue</li>
 </ul>
 </strong>
 
