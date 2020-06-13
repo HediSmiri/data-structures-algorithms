@@ -124,7 +124,6 @@ int x1 ,x2 ;
                         }
                         else
                             delete_middle(&List);
-                        printf("\n[+] - successfully Inserted\n");
                         goto singly;
                     break;
                 case 4 :
@@ -160,10 +159,10 @@ int x1 ,x2 ;
                 case 7 :
                 swap1 :
                         Display(List);
-                        printf("[#] - Pos 1 : ");
+                        printf("[#] - Number 1 : ");
                         scanf("%d",&rep);
                         x1 = search(List,rep);
-                        printf("[#] - Pos 2 : ");
+                        printf("[#] - Number 2 : ");
                         scanf("%d",&rep1);
                         x2 = search(List,rep1);
                         if ((x1 != 0)&&(x2 != 0 )){
@@ -197,34 +196,20 @@ return 0 ;
 
 void create(node **List){
     node * Tete, *p;
-<<<<<<< HEAD
     int data,n ;
-=======
-    int datal,n ;
->>>>>>> 012593d04c9763852dc75af33dc843674da3011c
     printf("\n[#] - Number Of Nodes : ");
     scanf("%d",&n);
     Tete = (node*)malloc(sizeof(node));
     printf("[#] - Node[1] : ");
-<<<<<<< HEAD
     scanf("%d",&data);
     Tete->data = data;
-=======
-    scanf("%d",&datal);
-    Tete->data = datal;
->>>>>>> 012593d04c9763852dc75af33dc843674da3011c
     Tete->next = NULL;
     *List = Tete;
     for (int i = 1 ; i<n;i++){
         p = malloc(sizeof(node*));
         printf("[#] - Node[%d] : ",i+1);
-<<<<<<< HEAD
         scanf("%d",&data);
         p->data = data;
-=======
-        scanf("%d",&datal);
-        p->data = datal;
->>>>>>> 012593d04c9763852dc75af33dc843674da3011c
         p->next = NULL;
         (*List)->next = p ;
         *List = p ;
@@ -236,54 +221,41 @@ void create(node **List){
 
 void create_unk(node **List){
     node * Tete, *p;
-<<<<<<< HEAD
-    int data,n ;
-    Tete = NULL ;
-    data = 1;
-    int i = 1;
-    printf("\n[!] - Just insert 0 to Exit\n");
-    while (data != 0){
-        p = malloc(sizeof(node*));
+    int data;
+	printf("\n[!] - Just insert 0 to Exit\n");
+    Tete = (node*)malloc(sizeof(node));
+	printf("[#] - Node [1] :");
+	scanf("%d",&data);
+	Tete->data = data ;
+	Tete->next = NULL ;
+	*List = Tete ;
+	int i = 2 ;
+    while (1){
+        p = (node*)malloc(sizeof(node));
         printf("[#] - Node[%d] : ",i);
         scanf("%d",&data);
+		if (data == 0)
+			break;
         p->data = data;
-=======
-    int datal,n ;
-    Tete = NULL ;
-    datal = 1;
-    int i = 1;
-    printf("\n[!] - Just insert 0 to Exit\n");
-    while (datal != 0){
-        p = malloc(sizeof(node*));
-        printf("[#] - Node[%d] : ",i);
-        scanf("%d",&datal);
-        p->data = datal;
->>>>>>> 012593d04c9763852dc75af33dc843674da3011c
-        p->next = Tete;
-        Tete = p ;
+        p->next = NULL;
+		(*List)->next = p ;
+		*List = p ;
         i++;
     }
     *List = Tete;
     printf("\n[+] - successfully created\n");
 }
 
+
 void Insert_First (node **List){
     node * Tete ;
     node * p = *List;
-<<<<<<< HEAD
     int data ;
     Tete = (node*)malloc(sizeof(node*));
-    printf ("[#] - Input dataue :  ");
+    printf ("[#] - Input data :  ");
     scanf("%d",&data);
     Tete->data = data ;
-=======
-    int datal ;
-    Tete = (node*)malloc(sizeof(node*));
-    printf ("[#] - Input dataue :  ");
-    scanf("%d",&datal);
-    Tete->data = datal ;
->>>>>>> 012593d04c9763852dc75af33dc843674da3011c
-    Tete ->next =p ;
+    Tete->next =p ;
     p = Tete;
     *List = p ;
 }
@@ -291,19 +263,11 @@ void Insert_First (node **List){
 void Insert_end (node **List){
     node * Tete ;
     node * p = *List;
-<<<<<<< HEAD
     int data ;
     Tete = (node*)malloc(sizeof(node*));
     printf ("[#] - Input dataue : ");
     scanf("%d",&data);
     Tete->data = data ;
-=======
-    int datal ;
-    Tete = (node*)malloc(sizeof(node*));
-    printf ("[#] - Input dataue : ");
-    scanf("%d",&datal);
-    Tete->data = datal ;
->>>>>>> 012593d04c9763852dc75af33dc843674da3011c
     Tete ->next =NULL ;
     while (p->next != NULL){
         p = p->next;
@@ -321,6 +285,7 @@ void Display (node *List){
     }
     printf("]\n########################################\n");
 }
+
 void insert_middle (node ** List,int n){
     node * temp = *List ;
     node * newnode = (node*)malloc(sizeof(node));
@@ -345,7 +310,7 @@ void Delete_first (node **List){
         node * head = *List ;
         *List = (*List)->next ;
         free(head);
-        printf ("[-] - Successfulle Delete \n");
+        printf ("[+] - Successfulle Delete \n");
     }
 }
 
@@ -358,6 +323,7 @@ void Delete_end (node ** List){
         free(head->next->next);
         head->next = NULL ;
     }
+	printf ("[+] - Successfulle Delete \n");
 }
 
 void delete_middle(node **List){
@@ -372,6 +338,7 @@ void delete_middle(node **List){
             free(supp);
         }
     }
+	printf ("[+] - Successfulle Delete \n");
 }
 
 void delete (node **List){
@@ -380,6 +347,7 @@ void delete (node **List){
        *List = (*List)->next;
        free(head);
    }
+   printf ("[+] - Successfulle Delete \n");
 
 }
 
@@ -450,7 +418,7 @@ void sort_bulle(node** List) {
 
 int count(node *list)
 {
-    int nodes = 0;
+    int nodes = 1;
 
     while (list != NULL) 
     {
@@ -517,4 +485,3 @@ int swap(node **list,int pos1 , int pos2 )
 
     return 1;
 }
-
